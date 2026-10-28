@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0d1120">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>夜市神枪手 · Prize Shooter</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ 大厅 ============ -->
+  <section id="screen-hub" class="screen active">
+    <header class="hub-header">
+      <div class="hub-title">
+        <h1>夜市神枪手</h1>
+        <p>打中什么，拿什么。</p>
+      </div>
+      <div class="hub-wallet">
+        <span class="gold-pill" id="hubGold">🪙 300</span>
+        <span class="free-pill" id="hubFree">🎫 今日免费 ×1</span>
+      </div>
+    </header>
+
+    <div class="level-cards" id="levelCards"></div>
+
+    <div class="hub-actions">
+      <button class="btn btn-gold" id="btnGallery">🏆 展馆 / 图鉴</button>
+      <div id="reliefWrap"></div>
+      <div class="hub-tools">
+        <button class="btn btn-ghost" id="btnHelp">❓ 玩法</button>
+        <button class="btn btn-ghost" id="btnFullscreen">⛶ 全屏</button>
+        <button class="btn btn-ghost" id="btnMute">🔊</button>
+        <button class="btn btn-ghost btn-danger" id="btnReset">重置</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 射击（横屏：顶栏 / 画布 + 双侧按键） ============ -->
+  <section id="screen-game" class="screen">
+    <div class="game-shell">
+      <div class="game-topbar">
+        <span id="hudBullets" class="hud-chip">🎫 ×10</span>
+        <span id="hudHits" class="hud-chip">🎯 0/10</span>
+        <span id="hudWind" class="hud-chip hud-wind">🍃 无风</span>
+        <div class="breath-track" title="屏息（时停）计量：耗尽后调息 5s">
+          <div class="breath-bar" id="breathBar"></div>
+        </div>
+        <button class="btn btn-ghost btn-small" id="btnExit">退出</button>
+      </div>
+      <div class="game-wrap">
+        <!-- 左侧（画布外）：屏息（时停）+ 开火 -->
+        <div class="side-ctrl left">
+          <button id="btnBreath" aria-label="屏息/时停（点按切换）">🫁<span>屏息</span></button>
+          <button id="btnFire" aria-label="开火（长按连发）">🔫<span>开火</span></button>
+        </div>
+        <div class="canvas-host">
+          <div class="canvas-stage">
+            <canvas id="gameCanvas" width="960" height="540"></canvas>
+            <div class="hint" id="hudHint"></div>
+            <div class="rotate-hint">🔄 转动手机到横屏</div>
+          </div>
+        </div>
+        <!-- 右侧（画布外）：开镜 + 副开火 -->
+        <div class="side-ctrl right">
+          <button id="btnScope" aria-label="开镜（点按切换）">🔭<span>开镜</span></button>
+          <button id="btnFire2" aria-label="副开火（长按连发）">🔫<span>开火</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 展馆 ============ -->
+  <section id="screen-gallery" class="screen">
+    <header class="g-header">
+      <button class="btn btn-ghost" id="btnGalleryBack">← 返回大厅</button>
+      <h2>🏆 展馆 · 图鉴</h2>
+      <div class="g-stats" id="galleryStats"></div>
+    </header>
+    <p class="g-tip">每种奖品自动保留 1 件作为展品；重复的可以卖掉换金币。</p>
+    <div class="g-grid" id="galleryGrid"></div>
+    <footer class="g-footer" id="galleryFooter"></footer>
+  </section>
+
+  <!-- 弹窗 / 提示 -->
+  <div id="modal-root"></div>
+  <div id="toasts"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
